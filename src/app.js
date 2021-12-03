@@ -1,6 +1,6 @@
 require("./db/connection");
 const yargs = require("yargs");
-const {addAnime, listAnime, deleteAnime} = require("./Anime/animeMethods");
+const {addAnime, listAnime, deleteAnime,updateAnime} = require("./Anime/animeMethods");
 
 const app = async (args) => {
     switch (process.argv[2]) {
@@ -12,6 +12,9 @@ const app = async (args) => {
         break;
         case "delete":
             deleteAnime(args.title)
+        break;
+        case "update":
+            updateAnime({_id: args._id},{title: args.title, mainCharacter: args.mainCharacter, releaseDate: args.releaseDate})
         break;
         default: 
             console.log("incorrect command");
